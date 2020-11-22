@@ -3,7 +3,7 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-ENTITY alu IS
+ENTITY shifter IS
     PORT (
         clk     : IN std_logic;
         nrst    : IN std_logic;
@@ -15,12 +15,12 @@ ENTITY alu IS
         sout    : OUT std_logic;
         dout    : OUT std_logic_vector(31 DOWNTO 0)
     );
-END alu;
+END shifter;
 
-ARCHITECTURE behavioral OF alu IS
+ARCHITECTURE behavioral OF shifter IS
 
     SIGNAL temp         : std_logic_vector(31 DOWNTO 0);
-    SIGNAL sout_sig     : std_logic;
+    SIGNAL sout_sig     : std_logic := '0' ; 
     SIGNAL sham_int     : integer;
     SIGNAL zero         : STD_LOGIC_VECTOR (31 DOWNTO 0) :=  "00000000000000000000000000000000";
 	SIGNAL one          : STD_LOGIC_VECTOR (31 DOWNTO 0) :=  "11111111111111111111111111111111";

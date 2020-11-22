@@ -39,10 +39,10 @@ ARCHITECTURE test of shifter_tb IS
         --Input assignments--
         ---------------------
         clk_t <= NOT clk_t AFTER 5 ns;
-        nrst_t <= '1' AFTER 10 ns;
+        nrst_t <= '1' AFTER 9 ns;
         sin_t <= '0';
-        din_t <=  X"00000007" AFTER 10 ns;
-        sham_t <= "00010" AFTER 22 ns  ;
+        din_t <=  X"00000007";
+        sham_t <= "00010" AFTER 8 ns  ;
         shty_t <= "00", "01" AFTER 32 ns, "10" AFTER 44 ns, "11" AFTER 56 ns;
         dir_t <= '0', '1' AFTER 68 ns; 
 END test;

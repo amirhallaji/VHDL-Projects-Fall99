@@ -24,7 +24,7 @@ ARCHITECTURE behavioral OF shifter IS
 BEGIN
     PROCESS (clk)
 
-        VARIABLE sham_int := to_integer(unsigned(sham));
+        VARIABLE sham_int : to_integer(unsigned(sham));
 
     BEGIN
         IF clk = '1' THEN
@@ -44,9 +44,9 @@ BEGIN
 
                 ELSIF shty = "10" THEN  -- circular
                     IF dir = '0' THEN
-                        temp <= din(sham_int DOWNTO 0) & din(31 DOWNTO sham_int+1);
+                        temp <= din(sham_int DOWNTO 0) & din(31 DOWNTO (sham_int+1));
                     ELSE
-                        temp <= din(sham_int-1 DOWNTO 0) & din(31 DOWNTO sham_int);
+                        temp <= din((sham_int-1) DOWNTO 0) & din(31 DOWNTO sham_int);
                     END IF;
 
                 ELSE                    -- register

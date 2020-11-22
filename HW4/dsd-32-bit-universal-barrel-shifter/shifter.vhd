@@ -12,7 +12,7 @@ ENTITY shifter IS
         dir     : IN std_logic;
         nrst    : IN std_logic;
         sout    : OUT std_logic;
-        din     : OUT std_logic_vector(31 DOWNTO 0)
+        dout     : OUT std_logic_vector(31 DOWNTO 0)
     );
 END shifter;
 

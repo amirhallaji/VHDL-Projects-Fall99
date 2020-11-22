@@ -17,9 +17,27 @@ ARCHITECTURE test of shifter_tb IS
         dir     : IN std_logic;
         nrst    : IN std_logic;
         sout    : OUT std_logic;
-        din     : OUT std_logic_vector(31 DOWNTO 0)
+        dout     : OUT std_logic_vector(31 DOWNTO 0)
     );
     END COMPONENT;
 
-BEGIN
+    SIGNAL clk_t, nrst_t    : std_logic := '0';
+    SIGNAL sham             : std_logic(4 DOWNTO 0);
+    SIGNAL shty             : std_logic(1 DOWNTO 0);
+    SIGNAL sin, dir, sout   : std_logic;
+    SIGNAL din, dout        : std_logic(31 DOWNTO 0);
+
+    BEGIN
+
+        ---------------------
+        --- INSTANTIATION----
+        ---------------------
+        SH_INS = shifter PORT MAP(din_t, sham_t, shty_t, sin_t, clk_t, dir_t, nrst_t, sout_t, dout_t);
+
+
+        ---------------------
+        --Input assignments--
+        ---------------------
+        clk_t <= NOT clk_t AFTER 5 ns;
+        
 END test;

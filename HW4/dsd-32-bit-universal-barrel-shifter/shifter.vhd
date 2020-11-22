@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
 
-ENTITY alu IS
+ENTITY shifter IS
     PORT (
         din     : IN std_logic_vector(31 DOWNTO 0);
         sham    : IN std_logic_vector(4 DOWNTO 0);
@@ -14,9 +14,9 @@ ENTITY alu IS
         sout    : OUT std_logic;
         din     : OUT std_logic_vector(31 DOWNTO 0)
     );
-END alu;
+END shifter;
 
-ARCHITECTURE behavioral OF alu IS
+ARCHITECTURE behavioral OF shifter IS
 
     SIGNAL temp         : std_logic_vector(31 DOWNTO 0);
     SIGNAL sout_sig     : std_logic;

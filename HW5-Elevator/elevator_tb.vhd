@@ -45,11 +45,33 @@ BEGIN
         ---------------------
         --Input assignments--
         ---------------------
-        clk_t <= not clk_t AFTER 5 ns;
-        ntrst_t <= '0', '1' AFTER 20 ns, '0' AFTER 26 ns, '1' AFTER 35 ns; 
-        come_t <= "0001", "0100" AFTER 15 ns, "0010" AFTER 20 ns, "1000" AFTER 25 ns;
+        ntrst_t <= '0';
+        come_t <= "0001";
+        switch_t <= "0001";
         go_t <= "0000";
-        switch_t <= "0001", "0100" AFTER 20 ns;
+        WAIT FOR 15 ns;
 
+        come_t <= "0100";
+        WAIT FOR 5 ns;
+
+        ntrst_t <= '1';
+        switch_t <= "0100";
+        come_t <= "0010";
+        WAIT FOR 5 ns;
+
+        come_t <= "1000";
+        WAIT FOR 1 ns;
+
+        ntrst_t <= '0';
+        WAIT FOR 9 ns;
+
+        ntrst_t <= '1';
+        WAIT;
+        -- clk_t <= not clk_t AFTER 5 ns;
+        -- ntrst_t <= '0', '1' AFTER 20 ns, '0' AFTER 26 ns, '1' AFTER 35 ns; 
+        -- come_t <= "0001", "0100" AFTER 15 ns, "0010" AFTER 20 ns, "1000" AFTER 25 ns;
+        -- go_t <= "0000";
+        -- switch_t <= "0001", "0100" AFTER 20 ns;
     END PROCESS;
+    clk_t <= '1' AFTER 10 ns WHEN clk_t = '0' ELSE '0' AFTER 5 ns;
 END test;

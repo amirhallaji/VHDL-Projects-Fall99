@@ -26,32 +26,32 @@ ARCHITECTURE mealy of elevator IS
     com: PROCESS (current_state)
 BEGIN
         IF        current_state = s0 THEN
-            IF come = "XX10" OR go = "XX10" OR switch = "XXXX" THEN
+            IF (come(0) = '0' AND come(1) = '1') OR (go(0) = '0' AND go(1) = '1') THEN
                 next_state <= s1;
             ElSIF come = "0001" OR go = "0001" OR switch = "0001" THEN
                 next_state <= s0; 
             END IF;
 
         ELSIF     current_state = s1 THEN
-            IF come = "X10X" OR go = "X10X" OR switch = "XXXX" THEN
+            IF (come(1) = '0' AND come(2) = '1') OR (go(1) = '0' AND go(2) = '1') THEN
                 next_state <= s2;
-            ElSIF come = "XX01" OR go = "XX01" OR switch = "XXXX" THEN
+            ElSIF (come(0) = '1' AND come(1) = '0') OR (go(0) = '1' AND go(1) = '0') THEN
                 next_state <= s0;
             ELSIF come = "0010" OR go = "0010" OR switch = "0010" THEN
                 next_state <= s1;
             END IF;
 
         ELSIF     current_state = s2 THEN
-            IF come = "10XX" OR go = "10XX" OR switch = "XXXX" THEN
+            IF (come(2) = '0' AND come(3) = '1') OR (go(2) = '0' AND go(3) = '1') THEN
                 next_state <= s3;
-            ElSIF come = "X01X" OR go = "X01X" OR switch = "XXXX" THEN
+            ElSIF (come(1) = '1' AND come(2) = '0') OR (go(1) = '1' AND go(2) = '0') THEN
                 next_state <= s1; 
             ElSIF come = "0100" OR go = "0100" OR switch = "0100" THEN
                 next_state <= s2;
             END IF;
 
         ELSE
-            IF come = "01XX" OR go = "01XX" OR switch = "XXXX" THEN
+            IF (come(2) = '1' AND come(3) = '0') OR (go(2) = '1' AND  go(3) = '1' )THEN
                 next_state <= s2;
             ElSIF come = "1000" OR go = "1000" OR switch = "1000" THEN
                 next_state <= s3; 

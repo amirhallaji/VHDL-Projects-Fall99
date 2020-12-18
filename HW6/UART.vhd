@@ -19,5 +19,43 @@ ENTITY uart IS
 END uart;
 
 ARCHITECTURE amir_alireza IS 
+    com: PROCESS(clk)
 
+    IF ntrst = '0' THEN
+
+        IF start /= '1' THEN
+            tx <= '1';
+        ELSE
+        --Parallel To Serial
+            start <= '0';
+            tx <= '0'; 
+            WAIT(baud);
+
+            L1: FOR i IN 0 TO 7 LOOP
+                tx <= data_in(i);
+                WAIT(baud);
+            END L1;
+            ----------
+            WAIT(baud);
+            WAIT(baud);
+            IF rx = '0' THEN
+                start <= '1';
+            END IF;
+        END IF;
+
+        --Serial To Parallel
+        IF rx = '0' THEN
+            rx <= '1';
+            
+            L2:FOR i IN 0 TO 7 LOOP
+                data_out(i) <= rx;
+                WAIT(baud);
+            END L2;
+            ----------
+            WAIT(baud);
+            WAIT(baud);
+        END IF;
+    END IF;
+
+    END PROCESS com;
 END amir_alireza;

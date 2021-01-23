@@ -47,7 +47,6 @@ component int rotate(BMP image, double degree) {
 
 int main() {
   
-
   return 0;
 
 }
